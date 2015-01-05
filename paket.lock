@@ -4,6 +4,6 @@ NUGET
     FSharp.Core (3.1.2.1)
     FsPickler (1.0.6)
     Newtonsoft.Json (6.0.7)
-    Suave (0.20.1)
+    Suave (0.21.0)
       FSharp.Core (>= 3.1.2.1)
       FsPickler (>= 1.0.6)

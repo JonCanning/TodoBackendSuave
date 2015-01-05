@@ -54,7 +54,7 @@ let patchTodo request =
     |> propertyInfo.GetValue
     |> unbox
   
-  match find request.url with
+  match find request.url.AbsoluteUri with
   | Some todo ->
     store.Remove todo |> ignore
     let getPatchedProperty expr = getPatchedProperty expr patchedTodo todo
@@ -67,7 +67,7 @@ let patchTodo request =
     patched
     |> serialize
     |> OK
-  | None -> NOT_FOUND request.url
+  | None -> NOT_FOUND request.url.AbsoluteUri
 
 let post request = 
   let todo = 
@@ -75,16 +75,7 @@ let post request =
     |> UTF8.to_string'
     |> deserialize<Todo>
   
-  let scheme = 
-    if request.is_secure then "https"
-    else "http"
-  
-  let host = 
-    match HttpRequest.header request "host" with
-    | Some host -> host
-    | None -> failwith "Host header not found"
-  
-  let todo = { todo with url = Guid.NewGuid() |> sprintf "%s://%s/%O" scheme host }
+  let todo = { todo with url = Guid.NewGuid() |> sprintf "%s%O" request.url.AbsoluteUri }
   store.Add todo
   todo
   |> serialize
