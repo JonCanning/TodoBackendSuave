@@ -43,11 +43,7 @@ let patchTodo request =
     JsonConvert.DeserializeObject<Dictionary<string, string>> json |> Seq.exists (fun x -> x.Key = property)
   let patchedTodo = json |> deserialize<Todo>
   
-  let getPatchedProperty (property : Quotations.Expr<_>) patched original = 
-    let propertyInfo = 
-      match property with
-      | Lambda(_, PropertyGet(_, propertyInfo, _)) -> propertyInfo
-      | _ -> failwith "Property expression required"
+  let getPatchedProperty (Lambda(_, PropertyGet(_, propertyInfo, _))) patched original = 
     match patchedPropertiesContains propertyInfo.Name with
     | true -> patched
     | false -> original
