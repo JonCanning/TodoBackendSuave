@@ -34,6 +34,10 @@ let get _ =
   |> serialize
   |> OK
 
+let urlWithHost (request : HttpRequest) =
+  let host = request.headers |> List.find (fst >> (=) "host") |> snd
+  sprintf "%s://%s%s" request.url.Scheme host request.url.PathAndQuery
+
 let getTodo id =
   match find id with
   | Some todo -> serialize todo |> OK
@@ -52,7 +56,7 @@ let patchTodo request =
     |> propertyInfo.GetValue
     |> unbox
   
-  match find request.url.AbsoluteUri with
+  match request |> urlWithHost |> find with
   | Some todo ->
     store.Remove todo |> ignore
     let getPatchedProperty expr = getPatchedProperty expr patchedTodo todo
@@ -65,7 +69,7 @@ let patchTodo request =
     patched
     |> serialize
     |> OK
-  | None -> NOT_FOUND request.url.AbsoluteUri
+  | None -> request |> urlWithHost |> NOT_FOUND
 
 let post request = 
   let todo = 
@@ -73,8 +77,7 @@ let post request =
     |> UTF8.to_string'
     |> deserialize<Todo>
   
-  let url = request.headers |> List.find (fst >> (=) "host") |> snd |> sprintf "%s://%s/" request.url.Scheme
-  let todo = { todo with url = Guid.NewGuid() |> sprintf "%s%O" url }
+  let todo = { todo with url = (request |> urlWithHost, Guid.NewGuid()) ||> sprintf "%s%O" }
   store.Add todo
   todo
   |> serialize
