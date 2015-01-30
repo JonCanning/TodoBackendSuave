@@ -47,8 +47,11 @@
     <Reference Include="System.Numerics" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="TodoBackend.fs" />
+    <Compile Include="Service.fs" />
     <Compile Include="Program.fs" />
     <None Include="App.config" />
+    <None Include="paket.references" />
   </ItemGroup>
   <PropertyGroup>
     <MinimumVisualStudioVersion Condition="'$(MinimumVisualStudioVersion)' == ''">11</MinimumVisualStudioVersion>

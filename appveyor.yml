@@ -1,0 +1,12 @@
+build_script:
+  build.bat
+
+test: off
+
+artifacts:
+  - path: src\TodoBackendSuaveHost\bin\Release
+    name: TodoBackendSuave.ServiceHost
+
+deploy:
+  - provider: Environment
+    name: TodoBackendSuave

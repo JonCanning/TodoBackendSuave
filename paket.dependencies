@@ -2,3 +2,5 @@ source https://nuget.org/api/v2
 
 nuget suave
 nuget newtonsoft.json
+nuget fake
+nuget TopShelf

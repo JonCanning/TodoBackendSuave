@@ -5,6 +5,16 @@ VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "TodoBackendSuave", "TodoBackendSuave\TodoBackendSuave.fsproj", "{3A98E667-8F78-41C2-BB2E-130D4BB08A98}"
 EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "TodoBackendSuave.ServiceHost", "TodoBackendSuave.ServiceHost\TodoBackendSuave.ServiceHost.fsproj", "{60540F38-4AF6-4CFE-A3D7-3B9E7241D583}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{8B09AD3C-73AE-44F9-A089-FC6C48E67BB0}"
+	ProjectSection(SolutionItems) = preProject
+		appveyor.yml = appveyor.yml
+		build.fsx = build.fsx
+		paket.dependencies = paket.dependencies
+		paket.lock = paket.lock
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +25,10 @@ Global
 		{3A98E667-8F78-41C2-BB2E-130D4BB08A98}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3A98E667-8F78-41C2-BB2E-130D4BB08A98}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3A98E667-8F78-41C2-BB2E-130D4BB08A98}.Release|Any CPU.Build.0 = Release|Any CPU
+		{60540F38-4AF6-4CFE-A3D7-3B9E7241D583}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{60540F38-4AF6-4CFE-A3D7-3B9E7241D583}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{60540F38-4AF6-4CFE-A3D7-3B9E7241D583}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{60540F38-4AF6-4CFE-A3D7-3B9E7241D583}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
