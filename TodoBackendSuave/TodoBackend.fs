@@ -73,7 +73,8 @@ let post request =
     |> UTF8.to_string'
     |> deserialize<Todo>
   
-  let todo = { todo with url = Guid.NewGuid() |> sprintf "%s%O" request.url.AbsoluteUri }
+  let url = request.headers |> List.find (fst >> (=) "host") |> snd |> sprintf "%s://%s/" request.url.Scheme
+  let todo = { todo with url = Guid.NewGuid() |> sprintf "%s%O" url }
   store.Add todo
   todo
   |> serialize
