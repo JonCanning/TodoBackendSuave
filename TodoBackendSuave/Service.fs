@@ -17,7 +17,7 @@ let start port =
       |> Seq.map (fun ipAddress -> HttpBinding.mk HTTP ipAddress port)
       |> Seq.toList
   
-  let listening, server = web_server_async { default_config with bindings = bindings } TodoBackend.routes
+  let listening, server = startWebServerAsync { defaultConfig with bindings = bindings } TodoBackend.routes
   let cts = new CancellationTokenSource()
   Async.Start(server, cts.Token)
   listening
