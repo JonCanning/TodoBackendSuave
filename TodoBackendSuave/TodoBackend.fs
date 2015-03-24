@@ -106,11 +106,11 @@ let deleteTodo id =
 
 let routes = 
   choose [ OPTIONS >>= CORS >>= NO_CONTENT
-           GET >>= CORS >>= url "/" >>= request get
-           GET >>= CORS >>= urlScan "/%s" getTodo
+           GET >>= CORS >>= path "/" >>= request get
+           GET >>= CORS >>= pathScan "/%s" getTodo
            PATCH >>= CORS >>= request patchTodo
            POST >>= CORS >>= request post
-           DELETE >>= CORS >>= url "/" >>= request deleteAll
-           DELETE >>= CORS >>= urlScan "/%s" deleteTodo ]
+           DELETE >>= CORS >>= path "/" >>= request deleteAll
+           DELETE >>= CORS >>= pathScan "/%s" deleteTodo ]
 
 let start _ = startWebServer defaultConfig routes
